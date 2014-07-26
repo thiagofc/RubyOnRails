@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  entrance1: MyString
+  exit1: MyString
+  entrance2: MyString
+  exit2: MyString
+  entrance3: MyString
+  exit3: MyString
+
+two:
+  date: MyString
+  entrance1: MyString
+  exit1: MyString
+  entrance2: MyString
+  exit2: MyString
+  entrance3: MyString
+  exit3: MyString

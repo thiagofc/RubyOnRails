@@ -1,0 +1,29 @@
+<%= form_for(@colaborator) do |f| %>
+  <% if @colaborator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@colaborator.errors.count, "error") %> prohibited this colaborator from being saved:</h2>
+
+      <ul>
+      <% @colaborator.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :registration %><br>
+    <%= f.text_field :registration %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

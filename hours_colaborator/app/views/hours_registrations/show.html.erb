@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @hours_registration.date %>
+</p>
+
+<p>
+  <strong>Entrance1:</strong>
+  <%= @hours_registration.entrance1 %>
+</p>
+
+<p>
+  <strong>Exit1:</strong>
+  <%= @hours_registration.exit1 %>
+</p>
+
+<p>
+  <strong>Entrance2:</strong>
+  <%= @hours_registration.entrance2 %>
+</p>
+
+<p>
+  <strong>Exit2:</strong>
+  <%= @hours_registration.exit2 %>
+</p>
+
+<p>
+  <strong>Entrance3:</strong>
+  <%= @hours_registration.entrance3 %>
+</p>
+
+<p>
+  <strong>Exit3:</strong>
+  <%= @hours_registration.exit3 %>
+</p>
+
+<%= link_to 'Edit', edit_hours_registration_path(@hours_registration) %> |
+<%= link_to 'Back', hours_registrations_path %>

@@ -1,0 +1,2 @@
+module HoursRegistrationsHelper
+end
