@@ -61,6 +61,10 @@ class HoursRegistrationsController < ApplicationController
     end
   end
 
+  def find_hours_registration
+    @hours_registrations_colaborator = HoursRegistration.where(["colaborator_id = ?", params[:idColaborator]])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hours_registration
@@ -69,6 +73,6 @@ class HoursRegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hours_registration_params
-      params.require(:hours_registration).permit(:date, :entrance1, :exit1, :entrance2, :exit2, :entrance3, :exit3)
+      params.require(:hours_registration).permit(:colaborator_id, :date, :entrance1, :exit1, :entrance2, :exit2, :entrance3, :exit3)
     end
 end

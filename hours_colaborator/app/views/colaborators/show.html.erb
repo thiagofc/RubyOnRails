@@ -15,5 +15,10 @@
   <%= @colaborator.email %>
 </p>
 
+<p>
+  <strong>Manager:</strong>
+  <%= @colaborator.manager.name %>
+</p>
+
 <%= link_to 'Edit', edit_colaborator_path(@colaborator) %> |
 <%= link_to 'Back', colaborators_path %>

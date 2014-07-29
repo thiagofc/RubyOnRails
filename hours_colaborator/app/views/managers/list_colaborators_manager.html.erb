@@ -1,0 +1,21 @@
+<h1>Listing Colaborators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managers.each do |manager| %>
+      <% @manager.colaborators.each do |colaborator| %>
+        <tr>
+          <td><%= colaborator.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

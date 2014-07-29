@@ -17,3 +17,21 @@
 
 <%= link_to 'Edit', edit_manager_path(@manager) %> |
 <%= link_to 'Back', managers_path %>
+<br>
+<br>
+<br>
+<br>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Colaborators</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @manager.colaborators.each do |colaborator| %>
+        <tr>
+          <td><%= link_to colaborator.name, controller: "hours_registrations", action: "index", set_hours_registration: colaborator.id %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
