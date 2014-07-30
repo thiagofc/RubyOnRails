@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-  before_action :set_manager, only: [:show, :edit, :update, :destroy]
+  before_action :set_manager, only: [:show_colab_manager, :show, :edit, :update, :destroy]
 
   # GET /managers
   # GET /managers.json
@@ -10,6 +10,12 @@ class ManagersController < ApplicationController
   # GET /managers/1
   # GET /managers/1.json
   def show
+  end
+
+  # GET /show_colab_manager/1
+  # GET /show_colab_manager/1.json
+  def list_colaborators_manager
+    @manager = Manager.find(params[:id])
   end
 
   # GET /managers/new

@@ -61,8 +61,8 @@ class HoursRegistrationsController < ApplicationController
     end
   end
 
-  def find_hours_registration
-    @hours_registrations_colaborator = HoursRegistration.where(["colaborator_id = ?", params[:idColaborator]])
+  def list_hours_colaborator
+    @hours_registrations = HoursRegistration.where(["colaborator_id = ?", params[:id]])
   end
 
   private
