@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
+  
+  devise_for :admins
+  devise_for :user_apps
   resources :hours_registrations
 
   resources :managers
 
   resources :colaborators
 
+  resources :home
+
+  #root :to => redirect('/home')
+  root :to => "home#index"
+
   match 'show_colab_manager/:id', controller: 'managers', action: 'list_colaborators_manager', via: 'get'
   match 'show_hours_colaborator/:id', controller: 'hours_registrations', action: 'list_hours_colaborator', via: 'get'
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

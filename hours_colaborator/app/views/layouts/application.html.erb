@@ -2,13 +2,45 @@
 <html>
 <head>
   <title>HoursColaborator</title>
+  <link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+	      <a class="brand" href="/">The Hours Colaborators</a>
+	      <ul class="nav">
+	        <li class="active"><a href="/colaborators">Colaborators</a></li>
+	      </ul>
+	      <p class="navbar-text pull-right">
+	        <% if user_app_signed_in? %>
+	          Logged in as <strong><%= current_user_app.email %></strong>.
+	          <%= link_to 'Edit profile', edit_user_app_registration_path, :class => 'navbar-link' %> |
+	          <%= link_to "Logout", destroy_user_app_session_path, method: :delete, :class => 'navbar-link'  %>
+	        <% else %>
+	          <%= link_to "Sign up", new_user_app_registration_path, :class => 'navbar-link'  %> |
+	          <%= link_to "Login", new_user_app_session_path, :class => 'navbar-link'  %>
+	        <% end %>
+	      </p>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="container">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+		  	<%= yield %>
+	</div>
+
+	<footer>
+	  <div class="container">
+	    Hours Colaborator 2014
+	  </div>
+	</footer>
 
 </body>
 </html>
