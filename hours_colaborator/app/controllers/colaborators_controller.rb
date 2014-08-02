@@ -61,6 +61,15 @@ class ColaboratorsController < ApplicationController
     end
   end
 
+  # GET /show_colab_manager/1
+   # GET /show_colab_manager/1.json
+   def list_colaborators_manager
+     colab = Colaborator.find(params[:id])
+      if colab.manager_id == nil
+        @manager = colab
+      end
+   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_colaborator
