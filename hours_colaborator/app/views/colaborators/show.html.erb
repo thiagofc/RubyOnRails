@@ -10,15 +10,24 @@
   <%= @colaborator.name %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @colaborator.email %>
-</p>
+<% if @colaborator.manager != nil %>
+	<p>
+	  <strong>Manager:</strong>
+	  <%= @colaborator.manager.name %>
+	</p>
 
-<p>
-  <strong>Manager:</strong>
-  <%= @colaborator.manager.name %>
-</p>
+	<p>
+	  <strong>User:</strong>
+	  <%= @colaborator.manager.user_app.email %>
+	</p>
+<%else %>
+	<p>
+	  <strong>User:</strong>
+	  <%= @colaborator.user_app.email %>
+	</p>
+<%end%>
+
+
 
 <%= link_to 'Edit', edit_colaborator_path(@colaborator) %> |
 <%= link_to 'Back', colaborators_path %>
