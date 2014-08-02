@@ -1,4 +1,4 @@
-<% if can? :manager, Colaborator %>
+<%# if can? :manager, Colaborator %>
 
 <h1>Listing colaborators</h1>
 
@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Manager</th>
+      <th>User</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -16,17 +17,22 @@
   <tbody>
     <% @colaborators.each do |colaborator| %>
       <tr>
-        <td><%= colaborator.registration %></td>
-        <td><%= colaborator.name %></td>
-        <td><%= colaborator.email %></td>
-        <td>
+        <td width=100><%= colaborator.registration %></td>
+        <td width=150><%= colaborator.name %></td>
+        <td width=150><%= colaborator.email %></td>
+        <td width=150>
           <% if colaborator.manager != nil%>
             <%=  colaborator.manager.name %>
           <%end%>
         </td>
-        <td><%= link_to 'Show', colaborator %></td>
-        <td><%= link_to 'Edit', edit_colaborator_path(colaborator) %></td>
-        <td><%= link_to 'Destroy', colaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td width=150>
+          <% if colaborator.user_app != nil%>
+            <%=  colaborator.user_app.email %>
+          <%end%>
+        </td>
+        <td width=50 align=middle><%= link_to 'Show', colaborator %></td>
+        <td width=50 align=middle><%= link_to 'Edit', edit_colaborator_path(colaborator) %></td>
+        <td width=50 align=middle><%= link_to 'Destroy', colaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +41,4 @@
 <br>
 
 <%= link_to 'New Colaborator', new_colaborator_path %>
-<% end %>
+<%# end %>
