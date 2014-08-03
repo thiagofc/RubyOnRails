@@ -55,7 +55,7 @@ class HoursRegistrationsController < ApplicationController
     respond_to do |format|
       @hours_registration = HoursRegistration.find(params[:id])
       if @hours_registration.update_attribute(:approved, true)
-        format.html { redirect_to @hours_registration, notice: 'Hours registration was successfully approved.' }
+        format.html { redirect_to action: "list_hours_colaborator", id: @hours_registration.colaborator_id, notice:'Hours registration was successfully approved.' }
         format.json { render :show, status: :ok, location: @hours_registration }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class HoursRegistrationsController < ApplicationController
   end
 
   def list_hours_colaborator
-    @hours_registrations = HoursRegistration.where(["colaborator_id = ? and (approved = false or approved=NULL", params[:id]])
+    @hours_registrations = HoursRegistration.where(["colaborator_id = ? and (approved = false)", params[:id]])
   end
 
   private

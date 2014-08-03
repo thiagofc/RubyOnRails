@@ -1,10 +1,12 @@
 class ColaboratorsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_colaborator, only: [:show, :edit, :update, :destroy]
 
   # GET /colaborators
   # GET /colaborators.json
   def index
     @colaborators = Colaborator.all
+    #unauthorized! if cannot? :index, @colaborators
   end
 
   # GET /colaborators/1
@@ -68,6 +70,7 @@ class ColaboratorsController < ApplicationController
       if colab.manager_id == nil
         @manager = colab
       end
+      unauthorized! if cannot? :list_colaborators_manager, @manager
    end
 
   private
