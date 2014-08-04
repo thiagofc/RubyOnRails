@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :admins
-  devise_for :user_apps
+  devise_for :user_apps, :controllers => { registrations: 'registrations'}
   resources :hours_registrations
 
   resources :managers

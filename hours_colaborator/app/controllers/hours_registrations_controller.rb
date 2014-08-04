@@ -1,4 +1,5 @@
 class HoursRegistrationsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_hours_registration, only: [:show, :edit, :update, :destroy]
 
   # GET /hours_registrations
