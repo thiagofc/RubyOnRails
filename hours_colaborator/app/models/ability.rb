@@ -3,11 +3,11 @@ class Ability
 
   def initialize(user_app)
     
-      user_app ||= UserApp.new # guest user (not logged in)
-      if user_app.colaborator?
+      #user_app ||= UserApp.new # guest user (not logged in)
+      if user_app.role == "colaborator"
         can :manage, Colaborator
       else
-        can :read, Colaborator
+        cannot :read, :all
       end
     #
     # The first argument to `can` is the action you are giving the user 

@@ -1,31 +1,38 @@
 <table>
+ <% if @hours_registrations.size > 0 %>
   <thead>
-    <tr>
-      <th>Colaborator</th>
-      <th>Date</th>
-      <th>Entrance1</th>
-      <th>Exit1</th>
-      <th>Entrance2</th>
-      <th>Exit2</th>
-      <th>Entrance3</th>
-      <th>Exit3</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hours_registrations.each do |hours_registration| %>
       <tr>
-        <td><%= hours_registration.colaborator.name %></td>
-        <td><%= hours_registration.date %></td>
-        <td><%= hours_registration.entrance1 %></td>
-        <td><%= hours_registration.exit1 %></td>
-        <td><%= hours_registration.entrance2 %></td>
-        <td><%= hours_registration.exit2 %></td>
-        <td><%= hours_registration.entrance3 %></td>
-        <td><%= hours_registration.exit3 %></td>
-        <td><%= link_to 'Approved', hours_registration %></td>
+        <th>Colaborator</th>
+        <th>Date</th>
+        <th>Entrance1</th>
+        <th>Exit1</th>
+        <th>Entrance2</th>
+        <th>Exit2</th>
+        <th>Entrance3</th>
+        <th>Exit3</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
+    </thead>
+
+    <tbody>
+    
+      <% @hours_registrations.each do |hours_registration| %>
+          <tr>
+            <td><%= hours_registration.colaborator.name %></td>
+            <td><%= hours_registration.date %></td>
+            <td><%= hours_registration.entrance1 %></td>
+            <td><%= hours_registration.exit1 %></td>
+            <td><%= hours_registration.entrance2 %></td>
+            <td><%= hours_registration.exit2 %></td>
+            <td><%= hours_registration.entrance3 %></td>
+            <td><%= hours_registration.exit3 %></td>
+            <td><%= link_to 'Approved', controller: "hours_registrations", action: "approve", id: hours_registration.id%></td>
+          </tr>
+      <% end %>
   </tbody>
+  <%else%>
+      <tr>
+        <td><b>Não existem horas registradas para esse Colaborador</b></td>
+      </tr>
+    <%end%>
 </table>

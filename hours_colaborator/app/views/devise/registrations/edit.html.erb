@@ -19,6 +19,11 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
+  <div>
+    <%=f.label :role %> <br/>
+    <%= f.collection_select :role, UserApp::ROLES, :to_s, :humanize %>
+  </div><br/>
+
   <div><%= f.submit "Update" %></div>
 <% end %>
 

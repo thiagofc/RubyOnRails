@@ -1,4 +1,3 @@
-<%# if can? :manager, Colaborator %>
 
 <h1>Listing colaborators</h1>
 
@@ -24,15 +23,13 @@
           <% if colaborator.manager != nil%>
             <%=  colaborator.manager.name %>
           <%end%>
-        </td>
-        <td width=150>
-          <% if colaborator.user_app != nil%>
-            <%=  colaborator.user_app.email %>
-          <%end%>
-        </td>
-        <td width=50 align=middle><%= link_to 'Show', colaborator %></td>
-        <td width=50 align=middle><%= link_to 'Edit', edit_colaborator_path(colaborator) %></td>
-        <td width=50 align=middle><%= link_to 'Destroy', colaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </td>  
+        <td><%= link_to 'Show', colaborator %></td>
+        
+          <% if can? :update, colaborator %>
+            <td><%= link_to 'Edit', edit_colaborator_path(colaborator) %></td>
+          <% end %>
+        <td><%= link_to 'Destroy', colaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -41,4 +38,3 @@
 <br>
 
 <%= link_to 'New Colaborator', new_colaborator_path %>
-<%# end %>
