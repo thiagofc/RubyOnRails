@@ -1,23 +1,34 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="/">Home</a>
-        <ul class="nav">
-          <li class="active"><a href="/colaborators">Colaborators</a></li>
-          <li class="active"><a href="/hours_registrations">Hours Registration</a></li>
-        </ul>
-        <nav>
-          <ul class="nav pull-right" style="color:white">
-            <% if user_app_signed_in? %>
-              Logged in as <strong><%= current_user_app.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_app_registration_path, :class => 'navbar-link' %> |
-              <%= link_to "Logout", destroy_user_app_session_path, method: :delete, :class => 'navbar-link'  %>
-            <% else %>
-              <%= link_to "Sign up", new_user_app_registration_path, :class => 'navbar-link'  %> |
-              <%= link_to "Login", new_user_app_session_path, :class => 'navbar-link'  %>
-            <% end %>
-        </ul>
-        </nav>
-      </div>
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">Home</a>
+      <ul class="nav">
+        <li class="active"><a href="/colaborators">Colaborators</a></li>
+        <li class="active"><a href="/hours_registrations">Hours Registration</a></li>
+        <li class="active"><a href="/hours_registrations/new">Add Hours Registration</a></li>
+      </ul>
+      <nav>
+        <ul class="navbar-text pull-right" style="color:white">
+          <% if user_app_signed_in? %>
+            Logged in as <strong><%= current_user_app.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_app_registration_path, :class => 'navbar-link' %> |
+            <%= link_to "Logout", destroy_user_app_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <%= link_to "Sign up", new_user_app_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_app_session_path, :class => 'navbar-link'  %>
+          <% end %>
+      </ul>
+      </nav>
     </div>
-  </header>
+  </div>
+
+  <div class="container" style="color:gray">
+    <% if user_app_signed_in?%>
+      <%if current_user_app.role == 'colaborator'%>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+</header>
