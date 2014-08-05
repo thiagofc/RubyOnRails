@@ -6,11 +6,12 @@ class Ability
       user_app ||= UserApp.new # guest user (not logged in)
       alias_action  :read ,  :update ,  :destroy ,  :to  =>  :rud
       if user_app.role == "colaborator"
+        can :update, Colaborator, :colaborator_id => user_app.colaborator.id
         can :rud, HoursRegistration, :colaborator_id => user_app.colaborator.id
         can :create, HoursRegistration
-        cannot :read, HoursRegistration
+        
       else
-        cannot :read, :all
+        can :read, :all
       end
     #
     # The first argument to `can` is the action you are giving the user 
