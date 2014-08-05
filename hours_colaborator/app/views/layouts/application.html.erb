@@ -16,6 +16,7 @@
 	      <ul class="nav">
 	        <li class="active"><a href="/colaborators">Colaborators</a></li>
 	        <li class="active"><a href="/hours_registrations">Hours Registration</a></li>
+	        <li class="active"><a href="/hours_registrations/new">Add Hours Registration</a></li>
 	      </ul>
 	      <p class="navbar-text pull-right">
 	        <% if user_app_signed_in? %>
@@ -32,9 +33,17 @@
 	</div>
 
 	<div class="container">
-			<p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
-		  	<%= yield %>
+		<% if user_app_signed_in?%>
+			<%if current_user_app.role == 'colaborator'%>
+				<p class="notice"><%= notice %></p>
+				<p class="alert"><%= alert %></p>
+				<%= yield %>
+			  		
+			<% end %>
+		<% else %>
+			<%= yield %>
+		<% end %>
+			
 	</div>
 
 	<footer>

@@ -6,7 +6,6 @@ class ColaboratorsController < ApplicationController
   # GET /colaborators.json
   def index
     @colaborators = Colaborator.all
-    #unauthorized! if cannot? :index, @colaborators
   end
 
   # GET /colaborators/1

@@ -1,11 +1,14 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user_app)
     
       user_app ||= UserApp.new # guest user (not logged in)
-      if user.role == "colaborator"
-        can :manage, Colaborator
+      alias_action  :read ,  :update ,  :destroy ,  :to  =>  :rud
+      if user_app.role == "colaborator"
+        can :rud, HoursRegistration, :colaborator_id => user_app.colaborator.id
+        can :create, HoursRegistration
+        cannot :read, HoursRegistration
       else
         cannot :read, :all
       end
