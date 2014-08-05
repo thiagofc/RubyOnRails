@@ -12,8 +12,10 @@
   <% end %>
   
   <div class="field">
-    <%= f.label :colaborator_id %>: <%=current_user_app.colaborator.name%>
-    <% f.text_field :colaborator_id, :value => current_user_app.colaborator.id %>
+   Colaborator: <%=current_user_app.colaborator.name%>
+  </div>
+  <div style="display: none;">
+    <%= f.text_field :colaborator_id, :value => current_user_app.colaborator.id %>
   </div>
   <div class="field">
     <%= f.label :date %><br>
