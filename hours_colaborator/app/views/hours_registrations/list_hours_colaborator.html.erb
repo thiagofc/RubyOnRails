@@ -26,7 +26,14 @@
             <td><%= hours_registration.exit2 %></td>
             <td><%= hours_registration.entrance3 %></td>
             <td><%= hours_registration.exit3 %></td>
-            <td><%= link_to 'Approved', controller: "hours_registrations", action: "approve", id: hours_registration.id%></td>
+            <% if can? :update, hours_registration.colaborator.manager_id => current_user_app.colaborator.id %>
+              <td>
+                <%= link_to 'Approved', controller: "hours_registrations", action: "approve", id: hours_registration.id%>
+              </td>
+            <% else %>
+              <td><%= link_to 'Edit', edit_hours_registration_path(hours_registration) %></td>
+              <td><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
       <% end %>
   </tbody>

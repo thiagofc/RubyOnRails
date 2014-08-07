@@ -1,5 +1,6 @@
 class ColaboratorsController < ApplicationController
-  #load_and_authorize_resource except: [:create]
+  #load_and_authorize_resource except: [:create, :]
+  #load_and_authorize_resource :nested => :colaborator
   before_action :set_colaborator, only: [:show, :edit, :update, :destroy]
 
   # GET /colaborators
@@ -68,8 +69,10 @@ class ColaboratorsController < ApplicationController
      colab = Colaborator.find(params[:id])
       if colab.manager_id == nil
         @manager = colab
+        #authorize! :list_colaborators_manager,  @manager
       end
-      unauthorized! if cannot? :list_colaborators_manager, @manager
+      authorize! if can? :list_colaborators_manager, @manager
+      
    end
 
   private

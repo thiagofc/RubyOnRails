@@ -77,14 +77,8 @@ class HoursRegistrationsController < ApplicationController
 
   def list_hours_colaborator
     @hours_registrations = HoursRegistration.where(["colaborator_id = ? and (approved = false)", params[:id]])
+    authorize! if can? :list_hours_colaborator, @hours_registrations
   end
-
-  def list_all_hours_colaborator
-    user_app = UserApp.find_by(id: session[:user_app])
-    @hours_registrations = HoursRegistration.where(["colaborator_id = ?", user_app.colaborator.id])
-  end
-
-  helper_method :list_all_hours_colaborator
 
   private
     # Use callbacks to share common setup or constraints between actions.

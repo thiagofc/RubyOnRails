@@ -6,20 +6,17 @@ class ApplicationController < ActionController::Base
 	
 	alias_method :current_user, :current_user_app
 
-	rescue_from CanCan::AccessDenied do |exception|
-  		flash[:error] = "Access denied!"
-  		redirect_to root_url
-	end
-
-  def stored_location_for(resource_or_scope)
-    session[:user_app_return_to] || super
-  end
+	#rescue_from CanCan::AccessDenied do |exception|
+  #		flash[:error] = "Access denied!"
+  #		redirect_to root_url
+	#end
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.role == "colaborator"
-      redirect_to :controller => 'hours_registrations', :action => 'list_hours_colaborator', :id => current_user_app.colaborator.id
-    else
-      "/hours_registraions"
+     #debugger
+      show_hours_colaborator_path(current_user_app.colaborator)
+    elsif resource_or_scope.role == "manager"
+      show_colab_manager(current_user_app.colaborator)
     end
   end
 end

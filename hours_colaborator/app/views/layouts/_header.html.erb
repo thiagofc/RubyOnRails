@@ -3,9 +3,24 @@
     <div class="container">
       <a class="brand" href="/">Home</a>
       <ul class="nav">
-        <li class="active"><a href="/colaborators">Colaborators</a></li>
-        <li class="active"><a href="/hours_registrations">Hours Registration</a></li>
-        <li class="active"><a href="/hours_registrations/new">Add Hours Registration</a></li>
+        
+          <% if user_app_signed_in?%>
+            <% if  current_user_app.role == 'colaborator'%>
+              <li class="active">
+                <%= link_to 'Hours Registrations', controller: 'hours_registrations', action: 'list_hours_colaborator', id: current_user_app.colaborator.id%>
+              </li>
+            <% elsif  current_user_app.role == 'manager'%>
+              <li class="active">
+                <%= link_to 'Collaborators', controller: 'colaborators', action: 'list_colaborators_manager', id: current_user_app.colaborator.id%>
+              </li>
+            <% elsif current_user_app.role == 'admin'%>
+              <li class="active">
+                <a href="/colaborators">Colaborators</a>
+              </li>
+              <li class="active"><a href="/hours_registrations">Hours Registration</a></li>
+              <li class="active"><a href="/hours_registrations/new">Add Hours Registration</a></li>
+            <% end %>
+          <% end %>
       </ul>
       <nav>
         <ul class="navbar-text pull-right" style="color:white">

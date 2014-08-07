@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   #root :to => redirect('/home')
   root :to => "home#index"
 
-  match 'show_colab_manager/:id', controller: 'colaborators', action: 'list_colaborators_manager', via: 'get'
-  match 'show_hours_colaborator/:id', controller: 'hours_registrations', action: 'list_hours_colaborator', via: 'get'
-  match 'approve/:id', controller: 'hours_registrations', action: 'approve', via: 'get'
+  match 'show_colab_manager/:id', controller: 'colaborators', action: 'list_colaborators_manager', via: 'get', as: 'show_colab_manager'
+  match 'show_hours_colaborator/:id', controller: 'hours_registrations', action: 'list_hours_colaborator', via: 'get', as: 'show_hours_colaborator'
+  match 'approve/:id', controller: 'hours_registrations', action: 'approve', via: 'get' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
