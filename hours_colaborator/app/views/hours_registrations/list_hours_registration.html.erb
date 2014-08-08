@@ -19,7 +19,7 @@
   <tbody>
     <% @hours_registrations.each do |hours_registration| %>
       <% if hours_registration.colaborator.manager_id == current_user_app.colaborator.id or 
-        hours_registration.colaborator.id == current_user_app.colaborator.id%>
+        hours_registration.colaborator.id == current_user_app.colaborator.id %>
         <tr>
           <td width=150><%= hours_registration.colaborator.name %></td>
           <td width=100><%= hours_registration.date %></td>

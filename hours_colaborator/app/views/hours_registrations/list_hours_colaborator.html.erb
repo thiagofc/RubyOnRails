@@ -26,16 +26,18 @@
           <td width=75><%= hours_registration.exit2 %></td>
           <td width=75><%= hours_registration.entrance3 %></td>
           <td width=75><%= hours_registration.exit3 %></td>
-            <% if can? :update, hours_registration.colaborator.manager_id => current_user_app.colaborator.id %>
-              <td>
-                <%= link_to 'Approved', controller: "hours_registrations", action: "approve", id: hours_registration.id%>
+            <% if hours_registration.colaborator.manager_id == current_user_app.colaborator.id %>
+              <td width=75>
+                <%= link_to 'Approved', controller: "hours_registrations", action: "approve", id: hours_registration.id %>
+              </td>
+              <td width=75>
+                <%= link_to 'Disapproved', controller: "hours_registrations", action: "disapprove", id: hours_registration.id %>
               </td>
             <% else %>
-              <td><%= link_to 'Edit', edit_hours_registration_path(hours_registration) %></td>
-              <td><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td width=75><%= link_to 'Edit', edit_hours_registration_path(hours_registration) %></td>
+              <td width=75><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
-          <% @colaborator_id = hours_registration.colaborator.id %>
       <% end %>
   </tbody>
   <%else%>
@@ -46,5 +48,5 @@
 </table>
 
 <br>
-<%= link_to 'List colaborator hours registrations', controller: "hours_registrations", action: "list_hours_registration", id: @colaborator_id %>
+<%= link_to 'List colaborator hours registrations', controller: "hours_registrations", action: "list_hours_registration" %>
 
