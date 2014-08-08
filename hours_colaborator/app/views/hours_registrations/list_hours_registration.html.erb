@@ -36,9 +36,10 @@
           <% elsif hours_registration.approved == 2 %>
           <td width=75>No</td>
           <% end %>
-          <td><%= link_to 'Show', hours_registration %></td>
+          <% if hours_registration.approved == 0 and hours_registration.colaborator.id == current_user_app.colaborator.id %>
           <td><%= link_to 'Edit', edit_hours_registration_path(hours_registration) %></td>
           <td><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>
