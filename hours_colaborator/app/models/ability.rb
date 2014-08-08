@@ -7,15 +7,14 @@ class Ability
       alias_action  :read ,  :update ,  :destroy ,  :to  =>  :rud
       alias_action :read, :update, :to => :readupdate
       if user_app.role == "colaborator"
-        can :update, Colaborator, :colaborator_id => user_app.colaborator.id
+        can :update, Colaborator, :id => user_app.colaborator.id
         can :rud, HoursRegistration, :colaborator_id => user_app.colaborator.id
         can :create, HoursRegistration
       elsif user_app.role == "manager"
-        can :update, HoursRegistration
         can :readupdate, HoursRegistration,  user_app.colaborator.subordinates.where(["id = ?", :colaborator_id]).first
         can :read, Colaborator, :manager_id => user_app.colaborator.id
-      else
-        cannot :read, :all
+      elsif user_app.role == "admin"
+        can :manage, :all
       end
     #
     # The first argument to `can` is the action you are giving the user 

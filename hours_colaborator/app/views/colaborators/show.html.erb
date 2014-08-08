@@ -17,13 +17,12 @@
 	</p>
 <%end%>
 
-<% if @colaborator.user_app_id != nil %>
+<%if @colaborator.user_app != nil %>
   <p>
     <strong>User:</strong>
-    
     <%= @colaborator.user_app.email %>
   </p>
-<%end%>
+<% end %>
 
 <%= link_to 'Edit', edit_colaborator_path(@colaborator) %> |
 <%= link_to 'Back', colaborators_path %>

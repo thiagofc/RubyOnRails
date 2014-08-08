@@ -12,6 +12,7 @@ class ColaboratorsController < ApplicationController
   # GET /colaborators/1
   # GET /colaborators/1.json
   def show
+    #authorize! if can? :show, @colaborator
   end
 
   # GET /colaborators/new
@@ -69,10 +70,8 @@ class ColaboratorsController < ApplicationController
      colab = Colaborator.find(params[:id])
       if colab.manager_id == nil
         @manager = colab
-        #authorize! :list_colaborators_manager,  @manager
       end
       authorize! if can? :list_colaborators_manager, @manager
-      
    end
 
   private
@@ -83,6 +82,6 @@ class ColaboratorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def colaborator_params
-      params.require(:colaborator).permit(:registration, :name, :email, :manager_id, :user_id)
+      params.require(:colaborator).permit(:registration, :name, :email, :manager_id, :user_app_id)
     end
 end

@@ -1,7 +1,7 @@
 
 <h1>Listing colaborators</h1>
 
-<table>
+<table align="center">
   <thead>
     <tr>
       <th>Registration</th>
@@ -16,10 +16,10 @@
   <tbody>
     <% @colaborators.each do |colaborator| %>
       <tr>
-        <td width=100><%= colaborator.registration %></td>
-        <td width=150><%= colaborator.name %></td>
-        <td width=150><%= colaborator.email %></td>
-        <td width=150>
+        <td width=100 align="center"><%= colaborator.registration %></td>
+        <td width=150 align="center"><%= colaborator.name %></td>
+        <td width=200 align="center"><%= colaborator.email %></td>
+        <td width=150 align="center">
           <% if colaborator.manager != nil%>
             <%=  colaborator.manager.name %>
           <%end%>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Colaborator', new_colaborator_path %>
+<div style="margin-left:130px"><%= link_to 'New Colaborator', new_colaborator_path %></div>

@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140808014528) do
     t.datetime "updated_at"
     t.integer  "colaborator_id"
     t.integer  "approved",       default: 0
+    t.string   "justify"
   end
 
   create_table "user_apps", force: true do |t|

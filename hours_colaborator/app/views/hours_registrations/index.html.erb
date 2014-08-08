@@ -12,6 +12,7 @@
       <th>Entr3</th>
       <th>Exit3</th>
       <th>Approved</th>
+      <th>Justify</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -34,6 +35,7 @@
         <% elsif hours_registration.approved == 2 %>
         <td width=75>No</td>
         <% end %>
+        <td width=75><%= hours_registration.justify %></td>
         <td><%= link_to 'Show', hours_registration %></td>
         <td><%= link_to 'Edit', edit_hours_registration_path(hours_registration) %></td>
         <td><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>

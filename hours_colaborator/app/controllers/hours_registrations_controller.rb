@@ -37,6 +37,7 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
+    authorize! if can? :create, @hours_registration
   end
 
   # PATCH/PUT /hours_registrations/1
@@ -51,6 +52,7 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
+    authorize! if can? :create, @hours_registration
   end
 
   def approve
@@ -64,6 +66,7 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
+    authorize! if can? :approve, @hours_registration
   end
 
   def disapprove
@@ -87,6 +90,7 @@ class HoursRegistrationsController < ApplicationController
       format.html { redirect_to hours_registrations_url, notice: 'Hours registration was successfully destroyed.' }
       format.json { head :no_content }
     end
+    authorize! if can? :destroy, @hours_registrations
   end
 
   def list_hours_colaborator
@@ -107,6 +111,6 @@ class HoursRegistrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hours_registration_params
-      params.require(:hours_registration).permit(:colaborator_id, :date, :entrance1, :exit1, :entrance2, :exit2, :entrance3, :exit3)
+      params.require(:hours_registration).permit(:colaborator_id, :date, :entrance1, :exit1, :entrance2, :exit2, :entrance3, :exit3, :justify)
     end
 end
