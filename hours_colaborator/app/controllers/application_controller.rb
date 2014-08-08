@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 	
 	alias_method :current_user, :current_user_app
 
-	#rescue_from CanCan::AccessDenied do |exception|
-  #		flash[:error] = "Access denied!"
-  #		redirect_to root_url
-	#end
+	rescue_from CanCan::AccessDenied do |exception|
+  		flash[:error] = "Access denied!"
+  		redirect_to root_url
+	end
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.role == "colaborator"

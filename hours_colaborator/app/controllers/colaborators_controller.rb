@@ -73,7 +73,7 @@ class ColaboratorsController < ApplicationController
   # GET /show_colab_manager/1
    # GET /show_colab_manager/1.json
    def list_colaborators_manager
-    authorize! :list_colaborators_manager, Colaborator
+    authorize! :read, Colaborator
      colab = Colaborator.find(params[:id])
       if colab.manager_id == nil
         @manager = colab

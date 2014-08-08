@@ -1,6 +1,9 @@
 class HoursRegistrationsController < ApplicationController
   #load_and_authorize_resource
   before_action :set_hours_registration, only: [:show, :edit, :update, :destroy]
+
+  Approved = [Undefined = 0, Yes = 1, No = 2]
+
   # GET /hours_registrations
   # GET /hours_registrations.json
   def index
@@ -22,6 +25,7 @@ class HoursRegistrationsController < ApplicationController
 
   # GET /hours_registrations/1/edit
   def edit
+    authorize! :edit, HoursRegistration
   end
 
   # POST /hours_registrations
@@ -57,11 +61,25 @@ class HoursRegistrationsController < ApplicationController
   end
 
    def approve
-    authorize! :approve, HoursRegistration
+    authorize! :readupdate, HoursRegistration
     respond_to do |format|
       @hours_registration = HoursRegistration.find(params[:id])
-      if @hours_registration.update_attribute(:approved, true)
+      if @hours_registration.update_attribute(:approved, Yes)
         format.html { redirect_to action: "list_hours_colaborator", id: @hours_registration.colaborator_id, notice:'Hours registration was successfully approved.' }
+        format.json { render :show, status: :ok, location: @hours_registration }
+      else
+        format.html { render :edit }
+        format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def disapprove
+    authorize! :readupdate, HoursRegistration
+    respond_to do |format|
+      @hours_registration = HoursRegistration.find(params[:id])
+      if @hours_registration.update_attribute(:approved, No)
+        format.html { redirect_to action: "list_hours_colaborator", id: @hours_registration.colaborator_id, notice:'Hours registration was successfully disapproved.' }
         format.json { render :show, status: :ok, location: @hours_registration }
       else
         format.html { render :edit }
@@ -82,10 +100,14 @@ class HoursRegistrationsController < ApplicationController
   end
 
   def list_hours_colaborator
-    
     @hours_registrations = HoursRegistration.where(["colaborator_id = ? and (approved = false)", params[:id]])
-    #authorize! :list_hours_colaborator, HoursRegistration
+    authorize! :read, HoursRegistration
     #authorize! if can? :list_hours_colaborator, @hours_registration
+  end
+
+  def list_hours_registration
+    @hours_registrations = HoursRegistration.where(["colaborator_id = ?", params[:id]])
+    authorize! if can? :list_hours_registration, @hours_registrations
   end
 
   private

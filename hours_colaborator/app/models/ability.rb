@@ -11,7 +11,9 @@ class Ability
         can :rud, HoursRegistration, :colaborator_id => user_app.colaborator.id
         can :create, HoursRegistration
       elsif user_app.role == "manager"
-        can :readupdate, HoursRegistration,  user_app.colaborator.subordinates.where(["id = ?", :colaborator_id]).first
+        can :readupdate, HoursRegistration, :colaborator => {:manager_id => user_app.colaborator.id}
+        #can :readupdate, HoursRegistration,  user_app.colaborator.subordinates.where(["id = ?", :colaborator_id])
+        can :update, HoursRegistration,  user_app.colaborator.subordinates.where(["id = ?", :colaborator_id])
         can :read, Colaborator, :manager_id => user_app.colaborator.id
       elsif user_app.role == "admin"
         can :manage, :all
