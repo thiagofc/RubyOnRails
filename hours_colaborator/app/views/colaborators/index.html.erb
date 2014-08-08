@@ -23,6 +23,11 @@
           <% if colaborator.manager != nil%>
             <%=  colaborator.manager.name %>
           <%end%>
+        </td>
+        <td width=150>
+          <% if colaborator.user_app != nil%>
+            <%=  colaborator.user_app.email %>
+          <%end%>
         </td>  
         <td><%= link_to 'Show', colaborator %></td>
         

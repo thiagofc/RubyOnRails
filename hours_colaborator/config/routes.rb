@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   match 'show_colab_manager/:id', controller: 'colaborators', action: 'list_colaborators_manager', via: 'get', as: 'show_colab_manager'
   match 'show_hours_colaborator/:id', controller: 'hours_registrations', action: 'list_hours_colaborator', via: 'get', as: 'show_hours_colaborator'
+  match 'show_hours_registration/:id', controller: 'hours_registrations', action: 'list_hours_registration', via: 'get', as: 'show_hours_registration'
   match 'approve/:id', controller: 'hours_registrations', action: 'approve', via: 'get'
   match 'disapprove/:id', controller: 'hours_registrations', action: 'disapprove', via: 'get'
 

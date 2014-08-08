@@ -35,6 +35,7 @@
               <td><%= link_to 'Destroy', hours_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
+          <% @colaborator_id = hours_registration.colaborator.id %>
       <% end %>
   </tbody>
   <%else%>
@@ -45,4 +46,5 @@
 </table>
 
 <br>
-<%= link_to 'List hours registrations', hours_registrations_path %>
+<%= link_to 'List colaborator hours registrations', controller: "hours_registrations", action: "list_hours_registration", id: @colaborator_id %>
+
