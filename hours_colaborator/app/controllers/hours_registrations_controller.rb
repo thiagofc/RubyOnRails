@@ -25,7 +25,6 @@ class HoursRegistrationsController < ApplicationController
 
   # GET /hours_registrations/1/edit
   def edit
-    authorize! :edit, HoursRegistration
   end
 
   # POST /hours_registrations
