@@ -41,7 +41,10 @@
   </tbody>
   <%else%>
       <tr>
-        <td><b>Não existem horas registradas para esse Colaborador</b></td>
+        <td><br/><br/><b>Não existem horas registradas para esse Colaborador</b></td>
       </tr>
     <%end%>
 </table>
+<br/>
+<br/>
+<div><%= link_to 'New Hours registration', new_hours_registration_path %></div>

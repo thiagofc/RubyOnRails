@@ -15,6 +15,10 @@ class Ability
         can :read, Colaborator, :manager_id => user_app.colaborator.id
       elsif user_app.role == "admin"
         can :manage, :all
+      else
+        cannot :manage, :all
+        cannot :create, :all
+        cannot :read, :all
       end
     #
     # The first argument to `can` is the action you are giving the user 

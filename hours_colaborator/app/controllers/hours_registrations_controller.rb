@@ -1,20 +1,22 @@
 class HoursRegistrationsController < ApplicationController
-  #load_and_authorize_resource except: [:create]
+  #load_and_authorize_resource
   before_action :set_hours_registration, only: [:show, :edit, :update, :destroy]
-
   # GET /hours_registrations
   # GET /hours_registrations.json
   def index
-    @hours_registrations = HoursRegistration.all
+    authorize! :index, HoursRegistration
+    @hours_registrations = HoursRegistration.accessible_by(current_ability)#HoursRegistration.all
   end
 
   # GET /hours_registrations/1
   # GET /hours_registrations/1.json
   def show
+    authorize! :show, HoursRegistration
   end
 
   # GET /hours_registrations/new
   def new
+    authorize! :new, HoursRegistration
     @hours_registration = HoursRegistration.new
   end
 
@@ -25,6 +27,7 @@ class HoursRegistrationsController < ApplicationController
   # POST /hours_registrations
   # POST /hours_registrations.json
   def create
+    authorize! :create, HoursRegistration
     @hours_registration = HoursRegistration.new(hours_registration_params)
 
     respond_to do |format|
@@ -36,12 +39,12 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
-    authorize! if can? :create, @hours_registration
   end
 
   # PATCH/PUT /hours_registrations/1
   # PATCH/PUT /hours_registrations/1.json
   def update
+    authorize! :update, HoursRegistration
     respond_to do |format|
       if @hours_registration.update(hours_registration_params)
         format.html { redirect_to @hours_registration, notice: 'Hours registration was successfully updated.' }
@@ -51,10 +54,10 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
-    authorize! if can? :create, @hours_registration
   end
 
    def approve
+    authorize! :approve, HoursRegistration
     respond_to do |format|
       @hours_registration = HoursRegistration.find(params[:id])
       if @hours_registration.update_attribute(:approved, true)
@@ -65,23 +68,24 @@ class HoursRegistrationsController < ApplicationController
         format.json { render json: @hours_registration.errors, status: :unprocessable_entity }
       end
     end
-    authorize! if can? :approve, @hours_registration
   end
 
   # DELETE /hours_registrations/1
   # DELETE /hours_registrations/1.json
   def destroy
+    authorize! :destroy, HoursRegistration
     @hours_registration.destroy
     respond_to do |format|
       format.html { redirect_to hours_registrations_url, notice: 'Hours registration was successfully destroyed.' }
       format.json { head :no_content }
     end
-    authorize! if can? :destroy, @hours_registrations
   end
 
   def list_hours_colaborator
+    
     @hours_registrations = HoursRegistration.where(["colaborator_id = ? and (approved = false)", params[:id]])
-    authorize! if can? :list_hours_colaborator, @hours_registrations
+    #authorize! :list_hours_colaborator, HoursRegistration
+    #authorize! if can? :list_hours_colaborator, @hours_registration
   end
 
   private

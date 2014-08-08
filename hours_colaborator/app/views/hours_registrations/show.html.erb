@@ -40,5 +40,10 @@
   <%= @hours_registration.exit3 %>
 </p>
 
+<p>
+  <strong>Justify:</strong>
+  <%= @hours_registration.justify %>
+</p>
+
 <%= link_to 'Edit', edit_hours_registration_path(@hours_registration) %> |
-<%= link_to 'Back', hours_registrations_path %>
+<%= link_to 'Back', controller: "hours_registrations", action: "list_hours_colaborator", id: @hours_registration.colaborator_id %>
