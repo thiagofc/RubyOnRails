@@ -23,15 +23,28 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  
+  
+  <div id="manager_div" class="field">
     <%= f.label :manager_id %><br>
-    <%= f.text_field :manager_id %>
+    <%= f.collection_select :manager_id,  Colaborator.where("manager_id IS NULL"), :id, :name, :prompt => true %>
   </div>
   <div class="field">
     <%= f.label :user_app_id %><br>
-    <%= f.text_field :user_app_id %>
+    <%= f.collection_select :user_app_id,  UserApp.all, :id, :email %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript">
+  var checkbox = document.getElementById('example');
+  var details_div = document.getElementById('manager_div');
+  checkbox.onchange = function() {
+     if(this.checked) {
+       details_div.style['display'] = 'block';
+     } else {
+       details_div.style['display'] = 'none';
+     }
+  };
+</script>

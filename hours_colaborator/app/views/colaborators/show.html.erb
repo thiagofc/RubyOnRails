@@ -16,11 +16,12 @@
 	  <%= @colaborator.manager.name %>
 	</p>
 <%end%>
-
-<p>
-  <strong>User:</strong>
-  <%= @colaborator.user_app.email %>
-</p>
+<%if @colaborator.user_app != nil %>
+  <p>
+    <strong>User:</strong>
+    <%= @colaborator.user_app.email %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_colaborator_path(@colaborator) %> |
 <%= link_to 'Back', colaborators_path %>

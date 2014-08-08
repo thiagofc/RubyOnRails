@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
      #debugger
       show_hours_colaborator_path(current_user_app.colaborator)
     elsif resource_or_scope.role == "manager"
-      show_colab_manager(current_user_app.colaborator)
+      show_colab_manager_path(current_user_app.colaborator)
+    else
+      '/home'
     end
+
   end
 end
