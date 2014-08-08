@@ -1,6 +1,8 @@
 <h1>Editing hours_registration</h1>
-
+<%if current_user_app.colaborator.id == @hours_registration.colaborator_id %>
 <%= render 'form' %>
 
 <%= link_to 'Show', @hours_registration %> |
+<% end %>
 <%= link_to 'Back', hours_registrations_path %>
+
